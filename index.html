@@ -8,32 +8,58 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
 </head>
-<body class="container">
-    <script type="text/javascript" src="app.js"></script>
-    <div class="header">
-      <h1>Code Editor App</h1>
-      <div class="actions">
-        <button class="history-button">History</button>
-        <button class="save-button">Save</button>
-      </div>
+<body class="container" onload="init()">
+  <script type="text/javascript" src="app.js" ></script>
+  <div class="header">
+    <h1>Code Editor App</h1>
+    <div class="actions">
+      <select class="history-button" id="example-select" onchange="loadSelectedCode(this)">
+        <option value="" disabled selected>Select your option</option>
+      </select>
+      <button class="save-button" id="open-save-modal" onclick="openSaveCodeModal()">Save</button>
     </div>
-    <div class="preview-area">
+  </div>
+  <div id="preview-area-container">
+    <div class="preview-area" id="measuringWrapper2">
       <iframe id="preview-window"></iframe>
     </div>
-    <div class="code-area">
-      <textarea 
-        id="htmlCode" 
-        placeholder="HTML Code" 
-      ></textarea>
-      <textarea 
-        class="css-code"
-        id="cssCode" 
-        placeholder="CSS Code" 
-      ></textarea>
-      <textarea 
-        id="jsCode" 
-        placeholder="JavaScript Code" 
-      ></textarea>				
+  </div>
+  <div class="code-area-container">
+    <div class="code-area-action">
+      <button class="code-area-button" id="minimize" onclick="growDiv()">Minimize</button>
+      <span>|</span>
+      <button class="code-area-button run-button" onclick="showPreview()">Run</button>
     </div>
+    <div id='grow'>
+      <div class="code-area" id="measuringWrapper">
+        <textarea 
+          id="htmlCode" 
+          placeholder="HTML Code"
+        ></textarea>
+        <textarea 
+          class="css-code"
+          id="cssCode" 
+          placeholder="CSS Code"
+        ></textarea>
+        <textarea 
+          id="jsCode" 
+          placeholder="JavaScript Code"
+        ></textarea>				
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="close-btn">&times;</span>
+        <h3>Please enter a template name</h3>
+      </div>
+      <input type="text" id="template-name" class="name-input">
+      <button class="save-button modal-save" id="save-modal-button" onclick="saveLatestCode()">Save</button>
+    </div>
+  </div>
+
 </body>
 </html>
